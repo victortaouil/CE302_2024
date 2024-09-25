@@ -1,0 +1,76 @@
+---
+title: "Aula 1"
+format: pdf
+editor: visual
+---
+
+# CE302 Elementos de programação
+
+## Aula 1 11/09/2024
+
+### Formatação em Markdown
+
+**Aula 1** \* Documentação \* Organização \* Versionamento Escrevendo algo em itálico *"algo"* \> O símbolo "\>" inicia um bloco de citação \> Podemos continuar a citação em diversas linhas
+
+### Criando listas
+
+-   Lista 1
+    -   Lista1.1
+        -   Lista1.1.1
+            -   Lista1.1.1.1
+
+1.  Lista2
+2.  Lista2
+3.  Lista2
+4.  Lista2
+5.  Lista2
+6.  Lista2 6.1 Lista2
+7.  Lista2
+
+\### Colocando um Link no relatório [Google](https://www.google.com.br/?hl=pt-BR)
+
+\### Inserindo Imagem no relatório
+
+![Coritiba, Yeah!](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqDnSR_yJUS5LbrludxCdMKt91g_z3f2WozA&s)
+
+[imagem](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqDnSR_yJUS5LbrludxCdMKt91g_z3f2WozA&s)
+
+### Referência Cruzada
+
+## Seção 1 {#sec-01}
+
+[clique aqui](#sec-01).
+
+#### mais referências cruzadas
+
+seção teste {#sec-teste}
+
+[seção teste](#sec-teste)
+
+### Criação de tabelas
+
+| Separa as colunas e o - separa o cabeçalho do restante
+
+Ex: \| Nome \| Idade \| Profissão \| \|--------\|-------\|-----------------\| \| João \| 30 \| Estatístico \| \| Maria \| 28 \| Designer \| \| Pedro \| 35 \| Desenvolvedor \| \| dsds \| FDfdfdf\| dfdfdf \|y\|z\|E
+
+``` python
+v = 'Hello, world' 
+print(v)
+```
+
+### Fórmulas matemáticas
+
+## \#### criando uma linha horizontal é com "---"
+
+Usa-se "\$" antes e depois da fórmula para formatar Fórmula $y = f'(x) = df(x)/dy$ $$\Omega = \Delta + \sum_{i=1}^{10}{i}\times23$$
+
+:angry:
+
+# Git
+
+## Organização
+
+### Sistema de versionamento
+
+```         
+```
