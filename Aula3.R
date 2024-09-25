@@ -182,4 +182,134 @@ substr(strings, start = 1, stop = 3)
 
 #gsub substitui alguma coisa da string
 
-gsub(strings[1], "teste","yo")
+gsub(strings[1], "teste","teste2")
+
+
+# Onde eu estou no meu PC
+
+getwd()
+
+
+# Lendo arquivos
+
+read.csv()
+read.table()
+
+### Escrevendo arquivos
+write.csv(nome_do_objjeto, "caminho.csv")
+write.table()
+
+
+data()
+data(iris)
+
+head(iris)
+# str é como se fosse o info() do py
+
+str(iris)
+
+# summary é como se fosse o describe()
+
+summary(iris)
+
+
+# Matrizes
+vetor_a <- c(1,2)
+vetor_b <- c(2,3)
+matriz_exemplo <- rbind(vetor_a,vetor_b)
+matriz_exemplo
+
+# fazendo um merge pelo indice
+
+matriz_exemplo <- cbind(vetor_a, vetor_b)
+matriz_exemplo
+
+# Criando matriz 
+matriz1 <- matrix(seq(1,10), ncol = 2, byrow = TRUE)
+matriz1
+
+#função dim vai me dar a dimensao da matriz
+
+dim(matriz1)
+matriz1
+
+#Pegando algum elemento da matriz
+
+matriz1[1,2]
+
+#Todos elementos da matriz maiores que algo
+
+matriz <- matriz1[which(matriz1 >3)]
+matriz
+
+# removendo uma linha inteira 
+matriz1[-1,]
+
+# Removendo a primeira e a terceira linha
+
+matriz1[-c(1,3),]
+
+
+# Operações matriciais
+
+
+# Subtração/Soma de matrizes
+
+matriz1 
+matriz2 <- matrix(seq(10,1), ncol = 2, byrow = TRUE)
+matriz2
+
+dim(matriz1) == dim(matriz2)
+
+matriz1 + matriz2
+
+# SOmando valores das linhas da minha matriz, linha por linha
+
+rowSums(matriz1)
+
+# Somando a coluna 
+colSums(matriz2)
+
+#multiplicando a matriz por um escalar
+
+matriz1*3 
+
+
+#Produto matricial
+
+class(matriz1)
+class(matriz2)
+
+A <- matrix(c(4, -3, 7, 
+              10, 1, 1, 
+              -5, 2, 3), 
+            ncol = 3, 
+            byrow = TRUE)
+B <- matrix(c(2, -1, 3,
+              1, 4, 1, 
+              5, -2, 7), 
+            ncol = 3, 
+            byrow = TRUE)
+A%*%B
+
+
+
+# Matriz nomeada
+
+colnames(A) <- c("Col1","Col2","Col3")
+A
+
+
+# Arrays
+
+# Estruturas multidimensionais, quantas dimensoes forem necessárias
+
+arr <- array (1:24, dim = c(2,3,4))
+arr
+
+arr[2,3,4]
+
+# Pegando a matriz da terceira dimensao
+arr[,,3]
+
+
