@@ -264,6 +264,89 @@ by(df$avg_precipitacao, c(df$estado,df$data), sum)
 
 
 # Pacote data.table: manipulação eficiente de grandes conjuntos de dados
+# muito mais eficiente que dataframe
+
+require(data.table)
+
+meu_data_table <- data.table( nome = c("Alice", "Bob", "Carol", "Ana", "João", "Carlos", "Patrícia", "Leonardo"),
+                              idade = c(25, 30, 28, 20, 27, 50, 60, 45),
+                              salario = c(5000, 6000, 5500, 8000, 2000, 3500, 10000, 3800 ), 
+                              meio_de_transporte = c('onibus', 'bicicleta', 'onibus', 'carro', 'carro', 'onibus', 'onibus', 'bicicleta')
+)
 
 
+meu_data_table
+meu_data_frame
 
+#Todo data.table é um dataframe, mas nem todo dtaframe é um data.table
+
+#Para ler um 
+# Importar um data.table e comparando o tempo de importação com o read.csv
+
+system.time(Queimadas <- fread("/home/est/vmt24/CE302_2024/Data/Dataset_FireWatch_Brazil_Q1_2024.csv"))
+system.time(Queimadas <- read.csv("/home/est/vmt24/CE302_2024/Data/Dataset_FireWatch_Brazil_Q1_2024.csv"))
+
+
+# Selecionar colunas e filtrar linhas
+resultado <- meu_data_table[idade > 25, .(nome, salario)]
+resultado
+
+# Agregar dados 
+agregado <- meu_data_table[, .(media_salario = mean(salario)),]
+agregado
+
+# Agregar dados por idade
+agregado_idade <- meu_data_table[, .(media_salario = mean(salario)), by = idade]
+agregado_idade
+
+# TIBBLE
+
+#Universo do tidyverse
+install.packages("tibble")
+require(tibble)
+require(magrittr)
+meu_tibble <- tibble( nome = c("Alice", "Bob", "Carol", "Ana", "João", "Carlos", "Patrícia", "Leonardo"),
+                         idade = c(25, 30, 28, 20, 27, 50, 60, 45),
+                         salario = c(5000, 6000, 5500, 8000, 2000, 3500, 10000, 3800 ), 
+                         meio_de_transporte = c('onibus', 'bicicleta', 'onibus', 'carro', 'carro', 'onibus', 'onibus', 'bicicleta')
+)
+
+meu_tibble
+
+#renomeando coluna
+
+meu_tibble <- meu_tibble|>rename( meio_de_transporte1 = "meio_de_transporte" )
+
+meu_tibble
+
+#COmo se fosse um str
+
+str(meu_tibble)
+glimpse(meu_tibble)
+
+# criando coluna nova com mutate
+
+meu_tibble <- meu_tibble |> mutate(meu_tibble, nova_coluna = c(1:8))
+meu_tibble
+
+#selecionar ou remover colunas com select
+
+meu_tibble|>select(-salario)
+
+# Transformando em vetor
+
+as.vector(meu_tibble$nome)
+
+#filtrando informações 
+
+meu_tibble |> filter(idade > 25)
+
+#Ordenar as informações
+
+meu_tibble|>arrange(idade, ascending = FALSE)
+
+#Agregando 
+# Agregar por meio de transporte e calcular média de salários
+agregado_por_transporte <-  group_by(meu_tibble, meio_de_transporte1) 
+
+summarize(agregado_por_transporte, media_salario = mean(salario))
