@@ -166,4 +166,4 @@ dim(df)
 write.csv(df,"queimadas_completo.csv")
 head(df)
 
-gitcreds::gitcreds_set()
+
