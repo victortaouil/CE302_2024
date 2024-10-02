@@ -230,9 +230,40 @@ avg <- by(df$avg_numero_dias_sem_chuva, df$Região, mean)
 avg
 
 
+## Ou ainda, podemos fazer usando subset. 
+
+estados_sul <- toupper(c('Paraná', 'Rio grande do sul', 'Santa Catarina'))
+estados_norte <- toupper(c('Amazonas','Pará','Acre','Rondônia','Roraima','Amapá'))
+
+queimadas_sul <- subset(df, estado %in% estados_sul )
+queimadas_norte <- subset(df, estado %in% estados_norte)
+
+mean(queimadas_sul$avg_numero_dias_sem_chuva)
+mean(queimadas_norte$avg_numero_dias_sem_chuva)
+
 #Média de dias sem chuva no amazonas
 
 mean(df[df$estado == 'AMAZONAS',][['avg_numero_dias_sem_chuva']])
 
+head(df)
+# Vamos pegar os registros em que o bioma é Amazônia
 
-# 
+df[df$bioma == 'Amazônia',]
+
+subset(df, bioma == 'Amazônia' & estado == "AMAZONAS")
+
+
+# Criando medidas agrupadas
+
+by(df$avg_risco_fogo, df$estado, mean)
+
+
+# O estado com maior precipitação em cada mês
+
+by(df$avg_precipitacao, c(df$estado,df$data), sum)
+
+
+# Pacote data.table: manipulação eficiente de grandes conjuntos de dados
+
+
+
