@@ -1,5 +1,7 @@
 # Aula 4
 # Dataframes
+install.packages("dplyr")
+library("dplyr")
 
 df <- data.frame( x = seq(1,10),
                   y = LETTERS[1:10],
@@ -166,4 +168,71 @@ dim(df)
 write.csv(df,"queimadas_completo.csv")
 head(df)
 
+# Exercícios
 
+#1.Imprima na tela as 9 primeiras observações.
+#2. Imprima as últimas 3 observações.
+#3. Quantas observações temos?
+#4.  Quantas variáveis temos?
+#5.  Apresente o sumário dos dados.
+#6. Apresente a estrutura dos dados.
+#7. Quantos biomas estão sendo afetados?
+#8. Qual a média de avg_numero_dias_sem_chuva para os estados da região sul e da região norte?
+
+#1. 
+head(df,9)
+
+#2. 
+tail(df,3)
+
+#3 
+
+dim(df)
+#4
+
+ncol(df)
+
+#5
+
+summary(df)
+
+#7 
+
+length(unique(df$bioma[!is.na(df$bioma)]))
+
+#8 
+head(df)
+estados_brasileiros <- data.frame(
+  estado = c("Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", 
+             "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", 
+             "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", 
+             "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", 
+             "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", 
+             "Rondônia", "Roraima", "Santa Catarina", "São Paulo", 
+             "Sergipe", "Tocantins"),
+  Região = c("Norte", "Nordeste", "Norte", "Norte", "Nordeste", 
+             "Nordeste", "Centro-Oeste", "Sudeste", "Centro-Oeste", 
+             "Nordeste", "Centro-Oeste", "Centro-Oeste", "Sudeste", 
+             "Norte", "Nordeste", "Sul", "Nordeste", "Nordeste", 
+             "Sudeste", "Nordeste", "Sul", "Norte", "Norte", 
+             "Sul", "Sudeste", "Nordeste", "Centro-Oeste")
+)
+
+estados_brasileiros
+
+
+estados_brasileiros$estado <- toupper(estados_brasileiros$estado)
+
+df <-left_join(df,estados_brasileiros, by ='estado')
+
+df
+avg <- by(df$avg_numero_dias_sem_chuva, df$Região, mean)
+avg
+
+
+#Média de dias sem chuva no amazonas
+
+mean(df[df$estado == 'AMAZONAS',][['avg_numero_dias_sem_chuva']])
+
+
+# 
