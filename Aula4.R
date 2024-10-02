@@ -152,6 +152,18 @@ install.packages("readr")
 library("tidyverse")
 library("readr")
 
-df <- read_csv("/home/est/vmt24/CE302_2024/Data/Dataset_FireWatch_Brazil_Q1_2024.csv")
-head(df)      
+df <- read.csv("/home/est/vmt24/CE302_2024/Data/Dataset_FireWatch_Brazil_Q1_2024.csv")
+df2 <- read.csv("/home/est/vmt24/CE302_2024/Data/Dataset_FireWatch_Brazil_Q2_2024.csv")
+df3 <- read.csv("/home/est/vmt24/CE302_2024/Data/Dataset_FireWatch_Brazil_Q3_2024.csv")
 
+head(df)      
+dim(df)
+dim(df2)
+df <-rbind(df,df2)
+df <- rbind(df,df3)
+dim(df)
+
+write.csv(df,"queimadas_completo.csv")
+head(df)
+
+gitcreds::gitcreds_set()
