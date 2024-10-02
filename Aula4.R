@@ -20,3 +20,138 @@ meu_data_frame <- data.frame(
 
 colnames(meu_data_frame)
 
+meu_data_frame 
+#Filtrando o datafrma pela indexação
+# Primeiro lihas, depois colunas
+meu_data_frame[1:2,1:4]
+
+# acessano as colunas
+
+meu_data_frame$idade
+# Querendo descobrir o tipo de dado que tem na coluna 
+
+class(meu_data_frame$idade)
+
+# Shape no R: str
+
+str(meu_data_frame)
+
+# removendo coluna do df
+# remover a segunda coluna
+meu_data_frame[,-2]
+
+
+#Adicionando uma nova coluna 
+
+meu_data_frame$new_column <- c(TRUE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE)
+
+meu_data_frame
+
+str(meu_data_frame)
+
+# Adicionando uma constante
+
+meu_data_frame$constante <- 5
+meu_data_frame
+
+
+#Como fazer um subset no dataframe. Repare que tem que utilizar a virgula para retornar as colunas
+
+meu_data_frame[meu_data_frame$idade >= 25, ]
+
+# Ou ainda, podemos utilizar a função subset
+
+subset(meu_data_frame, idade >= 25)
+
+#COmbinando vários filtros 
+# Utilizando o E para filtrar
+subset(meu_data_frame, idade >=25 & salario > 4000)
+
+#Utilizando o OU para filtrar
+subset(meu_data_frame, idade <= 40 | salario < 9000)
+
+#Ou ainda:
+
+meu_data_frame[(meu_data_frame$idade>=25 & meu_data_frame$idade<=26), ]
+
+
+# dimensões do data frame
+
+dim(meu_data_frame)[1] #Linhas
+nrow(meu_data_frame)
+ncol(meu_data_frame) #Numero de colunas
+
+
+# função summary 
+
+summary(meu_data_frame)
+
+# calculando a media
+
+mean(meu_data_frame$idade)
+median(meu_data_frame$idade)
+quantile(meu_data_frame$idade, 0.8) # O segundo argumento podemos setar para escolher qualquer quantil
+
+
+# Funções by()
+# COmo se fosse um groupby()
+# Recebe o argumento que eu quero sumarizar, por qual coluna eu quero agrupar e o calculo que eu quero fazer
+
+resultado <- by(meu_data_frame$salario, meu_data_frame$meio_de_transporte, mean)
+resultado
+
+# FATORES
+
+# Fatores são categorias que existem uma ordem. um dado categorico numerizado
+
+# Variável qualitativa ordinal
+
+# Exemplo de criação de fator
+genero <- factor(c("Masculino", "Feminino", "Masculino", "Feminino"))
+
+# Exenplo com diferentes níveis
+estadiamento_doenca <- factor(c("Estágio I", "Estágio II", "Estágio I", "Estágio III", "Estágio IV"), 
+                              levels = c("Estágio I", "Estágio II", "Estágio III", "Estágio IV"))
+
+# criando uma variavel e tranformando a em fator
+
+meu_data_frame$estad_doenca <- c("I","I","II","IV","II","III","I","IV")
+
+as.factor(meu_data_frame$estad_doenca)
+
+meu_data_frame$estad_doenca <- factor(meu_data_frame$estad_doenca, level = c("IV","III","II","I"))
+meu_data_frame
+
+# O levals ordena quando queremos plotar, na ordem que eu defini de importância dos meus níveis
+
+plot(meu_data_frame$estad_doenca, meu_data_frame$salario)
+
+
+nlevels(meu_data_frame$estad_doenca)
+str(meu_data_frame$estad_doenca
+    )
+levels(meu_data_frame$estad_doenca)
+
+#table
+
+table(meu_data_frame$salario)
+
+# frequencia relativa
+
+prop.table(table(meu_data_frame$idade))
+
+prop.table(table(meu_data_frame$salario,meu_data_frame$idade))
+
+Tabela<-table(meu_data_frame$salario,meu_data_frame$idade)
+Tabela
+
+
+#Lendo dados do R
+install.packages("tidyverse")
+install.packages("readr")
+library("tidyverse")
+library("readr")
+
+df <- read_csv("/home/est/vmt24/CE302_2024/Data/Dataset_FireWatch_Brazil_Q1_2024.csv")
+head(df)      
+
