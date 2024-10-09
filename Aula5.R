@@ -106,3 +106,65 @@ df2 <- readr::read_csv('/home/est/vmt24/CE302_2024/Data/Brazil Total highway cra
 
 head(df2)
 
+head(df2)
+
+df2 |>mutate(bicicleta = as.numeric(bicicleta) )
+
+# Usando um Fill.na no R
+
+df2|>mutate(bicicleta = ifelse(is.na(bicicleta),0,bicicleta))
+
+
+# Fazendo um subset nas colunas 
+
+df2[,c("onibus","moto")]
+
+#Também podemos fazer o filtro com o select do tidyverse
+
+df2|>select(onibus,moto)
+
+# Tirando várias colunas, utilizando o "-"
+
+df2|>select(-c("onibus","moto","data"))
+
+
+# Selecionar as variáveis que iniciam com determinada palavras, utilizar o starts_with
+
+df2|>select(starts_with("tr"))
+
+
+# Quero que termine com 
+
+df2|>select(ends_with(c("as")))
+
+
+
+# Variáveis que contém alguma palavra especifica
+
+
+df2|> select(contains("os"))
+
+
+#QUero só as variáveis numéricas
+
+df|>select(where(is.numeric))
+
+
+# Criando uma variável logica
+
+df2 <-df2 %>% mutate(var_logica = tracao_animal == 0)
+colnames(df2)
+df2|>select(where(is.logical))
+
+# Vamos selecionar as variáveis de interesse, mas perceba que conseguimos setar any_of, que pega somente as que existem no dataframe. já all_of pega somente se todas existirem
+
+
+var_interesse <- c("automovel","canoa","onibus")
+
+df2|>select(any_of(var_interesse))
+
+
+df2|> select(all_of(var_interesse))
+
+#Pegando algumas colunas 
+df2|>select(c("automovel","onibus"))
