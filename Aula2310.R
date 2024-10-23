@@ -214,20 +214,23 @@ data_ny
 
 
 #Utilizando o banco de dados car_crash formate a coluna data em uma data (dd-mm-yyyy);
-
-
+df <- df %>% mutate(data = as.Date(df$data, format = "%d/%m/%Y"),
+                   mes = month(data),
+              ano = year(as.Date(data, format = "%Y")))
 
 #Utilizando o banco de dados car_crash formate a coluna horario para o horário do acidente (hh:mm:ss)
 
-
+df <- df %>% mutate(horario = hms(df$horario))
 
 #Qual o mês com maior quantidade de acidentes?
 
 
-  
+df %>% group_by(mes) %>% summarise(n = n())
+
 #  Qual ano ocorreram mais acidentes?
 
 
+df %>% group_by(ano) %>% summarise(n = n()) %>%  arrange(desc(n))
   
 #  Qual horário acontecem menos acidentes?
 
@@ -235,7 +238,26 @@ data_ny
   
 #  Qual a média, desvio padrão, mediana, Q1 e Q3 para a quantidade de indivíduos classificados como levemente feridos por mês/ano?
 
-
-  
+df %>% filter(individuos %in% c("levemente feridos")) %>%  group_by(mes,ano) %>% summarise(media =    ,
+                                          desvio_padrao =   ,
+                                          mediana =     ,
+                                        quantile_25 =          ,
+                                        quantile_75 =           ,
+                                        ) 
+                            
 #  Quantos acidentes com vítimas fatais aconteceram, por mês/ano, em mediana entre as 6:00am e 11:59am.
+
+
+
+
+
+
+
+
+
+
+# JOINS 
+
+require(nycflights13)
+
 
