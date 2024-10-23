@@ -293,6 +293,12 @@ head(flights2_airlines)
 flights2_airlines2 <- inner_join(flights2, airlines, by = "carrier")
 flights2_airlines2
 
-
+View(flights2_airlines2)
 # Semi-Join 
+# Ele é tipo o inner join, mas ele só vai trazer as colunas do conjunto esquerdo
 
+airports %>% semi_join(flights2, join_by(faa == origin))
+
+# Anti-join ve o que ta no conjunto esquerdo e não está no direito. 
+
+anti_join(airports, flights2, join_by("faa"=="origin"))
