@@ -258,6 +258,41 @@ df %>% filter(individuos %in% c("levemente feridos")) %>%  group_by(mes,ano) %>%
 
 # JOINS 
 
+
+
 require(nycflights13)
 
+head(planes)
+
+count(planes,year) %>% arrange(desc(n))
+
+# ANos temos vários repetidos 
+
+planes %>% count(year) %>% filter(n>1)
+
+# Não tem nenhum tailnum repetido
+
+planes %>% count(tailnum) %>%  filter(n >1)
+
+# inner_join 
+
+flights2 <- flights %>% select( year,time_hour,origin,dest,tailnum,distance,carrier) %>% 
+                    filter(distance > 2000)
+head(flights2)
+
+#left_join(A,B, by = "Cidade") 
+
+flights2_airlines <- 
+  left_join(flights2,airlines, by = "carrier")
+
+head(flights2_airlines)
+
+
+# inner join 
+
+flights2_airlines2 <- inner_join(flights2, airlines, by = "carrier")
+flights2_airlines2
+
+
+# Semi-Join 
 
