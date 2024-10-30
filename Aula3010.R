@@ -74,8 +74,23 @@ df1 <- df %>%
     values_drop_na = TRUE
   )
 
+# Filtrar as chaves que COMEÇAM com new
 
-df1 %>% filter(chave %like% "new")
+df1 <- df1 %>% filter(chave %like% "^new")
+df1
+
+#Separando os registros da coluna chave
+# Vamos primeiro mudar newrel para new_rel
+df1 <- df1 %>% mutate( chave = stringr::str_replace(chave,"newrel","new_rel"))
+df1
+
+# Agora sim, vamos comecar a separar
+
+df1 <- df1 %>% separate(sexage, c('sex','age'), sep = 1)
+df1
+
+### Fazer os exercícios em casa
+
 
 
 
