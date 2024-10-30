@@ -78,6 +78,13 @@ df1 <- df %>%
 
 df1 <- df1 %>% filter(chave %like% "^new")
 df1
+# Que termina com new
+df1 <- df1 %>% filter(chave %like% "new$")
+df1
+
+#
+df %>% 
+  mutate(mensagem = str_glue("Boa noite {nome} {sobrenome}!"))
 
 #Separando os registros da coluna chave
 # Vamos primeiro mudar newrel para new_rel
@@ -92,6 +99,70 @@ df1
 ### Fazer os exercícios em casa
 
 
+
+---------------------------------------------------------------
+#Trabalhando com strings 
+
+
+var_com_aspas <- "String dentro : 'de string'"
+
+# Vendo somente a string
+
+str_view(var_com_aspas)
+
+
+# igual a f-string do python 
+
+df %>%mutate(mensagem = str_glue("boa noite {var} dsds"))
+
+#Separando, ao invés de separate
+df %<>% 
+  mutate(Nome_Sobrenome = str_c(nome, sobrenome, sep = " "))
+
+df$Nome_Sobrenome %>% 
+  str_split(., " ", simplify = TRUE)
+
+dfd
+# 
+texto_exemplo <- c('caixa baixai','caixa ALTA','Texto de sentença','vamos fazer   um teste', '   UM TESTE   BEM LOUCO')
+str_to_upper(texto_exemplo)
+str_to_lower(texto_exemplo)
+str_to_sentence(texto_exemplo)
+str_to_title(texto_exemplo)
+
+# espaço sobrando
+# Tirar os espaços sobrando das extremidades
+
+str_trim(texto_exemplo)
+
+# Tirar os espaços sobrando que estão tanto na extremidade, como no meio da string
+
+str_squish(texto_exemplo)
+
+# contando os caracteres
+
+str_count(texto_exemplo, "B")
+str_count(texto_exemplo, "[aeiou]")
+
+# Contando todas que não sejam aeiou
+
+str_count(texto_exemplo, "[^aeiou]")
+
+# Manipulação de strings 
+# removendo string que aparece pela primeira vez
+str_remove(texto_exemplo, "i")
+
+# Removendo todas as aparições da string
+str_remove_all(texto_exemplo, "i")
+
+# BUscando string dentro de um texto 
+
+texto<- 'gatunos são loucos'
+str_detect(texto, 'gatunos')
+
+# Buscando por gatunos ou ratunos
+padrao<- "(g|r)atunos"
+str_detect(texto, padrao)
 
 
 
