@@ -313,3 +313,7 @@ arr[2,3,4]
 arr[,,3]
 
 
+library(usethis)
+use_git_config(user.name = "Victor Taouil", 
+                             user.email = "victorm.taouil@gmail.com")
+gitcreds::gitcreds_set()

@@ -57,4 +57,9 @@ require(data.table)
 
 df <- fread('/home/est/vmt24/Downloads/TB (1).csv.gz')
 head(df)
-df %>% View
+df %>% View 
+
+
+
+
+
