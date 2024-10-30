@@ -6,8 +6,10 @@
 
 # Tabela pivotar pivot_wider 
 # Exercicio
+require(dplyr)
+require(data.table)
+require(tidyverse)
 
-library(tidyverse)
 
 #Pivantando a tabela 
 
@@ -52,13 +54,28 @@ table3
 
 
 # Exemplos
-
+require(dplyr)
 require(data.table)
-
+require(tidyverse)
 df <- fread('/home/est/vmt24/Downloads/TB (1).csv.gz')
 head(df)
 df %>% View 
 
+# O banco está no formato wide 
+
+df %>% pivot_longer( cols = -c(1:4),
+                     names_to = 'chaves',
+                     values_to = 'tamanho')
+df1 <- df %>% 
+  pivot_longer(
+    cols = -c(1:4), 
+    names_to = "chave", 
+    values_to = "casos", 
+    values_drop_na = TRUE
+  )
+
+
+df1 %>% filter(chave %like% "new")
 
 
 
