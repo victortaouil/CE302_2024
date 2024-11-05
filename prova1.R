@@ -1,4 +1,4 @@
-#Resolução prova Deisy
+#Resolução prova 
 
 matriz_a <- matrix(data = c(28,32,8,9,49,7,21,35,28,10,47,43,15,34,2,48,42,19,32,26,45,44,39,50,26), byrow = TRUE, ncol = 5, nrow = 5)
 matriz_a
