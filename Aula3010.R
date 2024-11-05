@@ -13,6 +13,7 @@ require(tidyverse)
 
 #Pivantando a tabela 
 
+
 table1 %>%  select(country,year,cases) %>%  pivot_wider(names_from = year, 
                                                         values_from = cases,
                                                         names_prefix = 'ano_')
@@ -23,16 +24,24 @@ table1 %>%  select(country,year,cases,population) %>%  pivot_wider(names_from = 
 
 # Se eu não tirar a info população, não temos todas as correspondencias
 
-table1 %>%pivot_wider(names_from = year,  values_from = cases,
-                                                names_prefix = 'ano_',
-                          values_fill = 0, 
-                          values_fn = length)  # Values_fn aplica uma função dentro dos valores 
+table1 %>% 
+pivot_wider(
+    names_from = year,              # Usa os valores da coluna 'year' como nomes de novas colunas.
+    values_from = cases,            # Preenche essas novas colunas com valores da coluna 'cases'.
+    names_prefix = 'ano_',          # Adiciona o prefixo 'ano_' aos nomes das colunas geradas.
+    values_fill = 0,                # Substitui valores ausentes (NA) por 0 nas novas colunas.
+    values_fn = length              # Conta a frequência de cada combinação de valores para preencher as colunas.
+)  
                           
 # Pivot Longer
 
-table1 %>% pivot_longer(cols = -c(country,year),
-                        names_to = 'cases',
-                        values_to = 'tamanho')
+table1 %>% 
+pivot_longer(
+    cols = -c(country, year),      # Seleciona todas as colunas, exceto 'country' e 'year', para transformar em formato longo.
+    names_to = 'cases',            # Define que os nomes das colunas selecionadas (menos 'country' e 'year') serão movidos para uma nova coluna chamada 'cases'.
+    values_to = 'tamanho'          # Define que os valores das colunas selecionadas serão movidos para uma nova coluna chamada 'tamanho'.
+)
+
 
 #table 3
 # Fazendo um strip 
@@ -68,11 +77,11 @@ df %>% pivot_longer( cols = -c(1:4),
                      values_to = 'tamanho')
 df1 <- df %>% 
   pivot_longer(
-    cols = -c(1:4), 
-    names_to = "chave", 
-    values_to = "casos", 
-    values_drop_na = TRUE
-  )
+    cols = -c(1:4),              # Seleciona todas as colunas, exceto as quatro primeiras, para transformar em formato longo.
+    names_to = "chave",          # Os nomes das colunas selecionadas são colocados em uma nova coluna chamada 'chave'.
+    values_to = "casos",         # Os valores das colunas selecionadas são movidos para uma nova coluna chamada 'casos'.
+    values_drop_na = TRUE        # Remove as linhas com valores NA na coluna 'casos' resultante.
+)
 
 # Filtrar as chaves que COMEÇAM com new
 
