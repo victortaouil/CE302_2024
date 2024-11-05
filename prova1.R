@@ -43,7 +43,7 @@ diag(solve((t(matriz_b)%*%matriz_a)))
 
 ### Questão 2
 require(data.table)
-df2 <- fread('C:/Users/victo/Desktop/Estatística/2º Semestre/P1_2023_deisy/chocolate.csv')
+df2 <- fread('/chocolate.csv')
 head(df2)
 
 
@@ -98,8 +98,8 @@ sum(str_count(df2$ing,"S\\*"))
 #Para esse exercício você deverá utilizar os banco de dados Art.csv.gz e
 #Art_Moma.csv.gz. Desconsidere artistas sem nacionalidade e/ou sem nome.
 
-art <- fread('C:/Users/victo/Desktop/Estatística/2º Semestre/P1_2023_deisy/Art.csv')
-art_moma <- fread('C:/Users/victo/Desktop/Estatística/2º Semestre/P1_2023_deisy/Art_Moma.csv')
+art <- fread('Art.csv')
+art_moma <- fread('Art_Moma.csv')
 
 
 # a) Os 3 artista(s) com mais exposições no The Whitney classificados em ordem decrescente
@@ -152,8 +152,8 @@ dim(resp_e)
 #e refugiados.csv.gz. Considere apenas observações completas.
 
 
-refugiados  <- fread('C:/Users/victo/Desktop/Estatística/2º Semestre/P1_2023_deisy/refugiados.csv')
-refugiados_pais  <- fread('C:/Users/victo/Desktop/Estatística/2º Semestre/P1_2023_deisy/refugiados_pais.csv')
+refugiados  <- fread('refugiados.csv')
+refugiados_pais  <- fread('refugiados_pais.csv')
 
 
 #A matriz de migração [origem, destino] intercontinental do ano 2006 é dada por:
