@@ -244,3 +244,47 @@ diferenca_segundos <- as.duration(data_hora - data1)
 print("Diferença entre data e data com hora (em horas e segundos):")
 print(paste("Diferença em horas:", diferenca_hora))
 print(paste("Diferença em segundos:", diferenca_segundos))
+
+
+
+
+# Carregar pacotes necessários
+library(tidyr)
+library(dplyr)
+
+# 1. Exemplo de pivot_wider
+# Criando um dataframe de exemplo (formato longo)
+vendas_long <- tibble(
+  produto = c("Produto A", "Produto A", "Produto A", "Produto B", "Produto B", "Produto B"),
+  mes = c("Jan", "Feb", "Mar", "Jan", "Feb", "Mar"),
+  vendas = c(200, 250, 300, 150, 180, 210)
+)
+
+print("Dataframe original (long) para pivot_wider:")
+print(vendas_long)
+
+# Usando pivot_wider para espalhar os meses em colunas
+vendas_wide <- vendas_long %>%
+  pivot_wider(names_from = mes, values_from = vendas)
+
+print("Dataframe após pivot_wider (wide):")
+print(vendas_wide)
+
+# 2. Exemplo de pivot_longer
+# Criando um dataframe de exemplo (formato largo)
+vendas_wide2 <- tibble(
+  produto = c("Produto A", "Produto B"),
+  Jan = c(200, 150),
+  Feb = c(250, 180),
+  Mar = c(300, 210)
+)
+
+print("Dataframe original (wide) para pivot_longer:")
+print(vendas_wide2)
+
+# Usando pivot_longer para combinar as colunas de meses em uma coluna
+vendas_long2 <- vendas_wide2 %>%
+  pivot_longer(cols = Jan:Mar, names_to = "mes", values_to = "vendas")
+
+print("Dataframe após pivot_longer (long):")
+print(vendas_long2)
