@@ -175,3 +175,72 @@ str_detect(texto, padrao)
 
 
 
+
+
+
+# Carregar o pacote lubridate
+library(lubridate)
+
+# 1. Leitura de Data em diferentes formatos
+data1 <- ymd("2024-11-06")
+data2 <- mdy("11/06/2024")
+data3 <- dmy("06-11-2024")
+
+print("Leitura das datas:")
+print(data1)
+print(data2)
+print(data3)
+
+# 2. Extração de componentes da data (dia, mês, ano)
+dia <- day(data1)
+mes <- month(data1)
+ano <- year(data1)
+
+print("Componentes extraídos da data1:")
+print(paste("Dia:", dia))
+print(paste("Mês:", mes))
+print(paste("Ano:", ano))
+
+# 3. Transformar para só mês, só ano, só dia
+mes_ano <- floor_date(data1, "month")
+ano_inicial <- floor_date(data1, "year")
+dia_inicial <- floor_date(data1, "day")
+
+print("Transformações para componentes isolados:")
+print(paste("Mês e ano de data1:", mes_ano))
+print(paste("Ano de data1:", ano_inicial))
+print(paste("Dia de data1:", dia_inicial))
+
+# 4. Soma de datas
+data_futura <- data1 + days(10)
+data_futura_mes <- data1 + months(3)
+data_futura_ano <- data1 + years(1)
+
+print("Somas de datas:")
+print(paste("Data futura (10 dias após data1):", data_futura))
+print(paste("Data futura (3 meses após data1):", data_futura_mes))
+print(paste("Data futura (1 ano após data1):", data_futura_ano))
+
+# 5. Subtração de datas
+data_passada <- data1 - days(5)
+data_passada_mes <- data1 - months(6)
+diferenca <- data1 - data3
+
+print("Subtrações de datas:")
+print(paste("Data passada (5 dias antes de data1):", data_passada))
+print(paste("Data passada (6 meses antes de data1):", data_passada_mes))
+print(paste("Diferença entre data1 e data3:", diferenca, "dias"))
+
+# 6. Leitura de data com formato diferente (incluindo hora)
+data_hora <- mdy_hms("11/06/2024 14:30:00")
+
+print("Leitura de data com hora:")
+print(data_hora)
+
+# 7. Cálculo de diferença entre datas (em horas, minutos, segundos)
+diferenca_hora <- as.duration(data_hora - data1)
+diferenca_segundos <- as.duration(data_hora - data1)
+
+print("Diferença entre data e data com hora (em horas e segundos):")
+print(paste("Diferença em horas:", diferenca_hora))
+print(paste("Diferença em segundos:", diferenca_segundos))
