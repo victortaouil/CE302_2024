@@ -263,3 +263,14 @@ mensagem <- switch(dia_da_semana,
 )
 
 cat(mensagem)
+
+
+# CASE WHEN 
+
+iris$cat_sepal = 
+  case_when((iris$Sepal.Length < mean(iris$Sepal.Length) - sd(iris$Sepal.Length)) ~ "X < media - 1 sd", 
+            (iris$Sepal.Length < mean(iris$Sepal.Length) + sd(iris$Sepal.Length)) ~ "X < media + 1 sd", 
+            .default = "X > media + 1 sd")
+iris
+
+# Funciona como o ifelse()
