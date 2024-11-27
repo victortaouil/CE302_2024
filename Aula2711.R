@@ -46,7 +46,33 @@ df %>%
     text = element_text(size = 9)
   )
 
+class(df)
+# Gráficos de com esquisse 
+require(Cairo)
 
-# Gráficos de barra
+pdf("loucura.pdf")
+df %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo) + ## Adicionamos cor
+  geom_point(alpha = 0.2) +
+  theme_minimal()+
+  scale_size_continuous(range(c(0:2)))+
+  scale_x_continuous(limits = c(1910,2020))+
+  #facet_grid(vars(tipo))+
+  labs(
+    y = "Gross",
+    x = "Ano",
+    title = "Grafico Gross x Ano per Movie"
+  )+
+  scale_color_discrete(name = "Novo Título da Legenda")+
+  theme(
+    legend.position = 'bottom',
+    text = element_text(size = 9)
+  )
+dev.off()
 
 
+install.packages("Shiny")
+save(df, compress = "xz", file = "Oberdan.RData")
