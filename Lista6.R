@@ -266,4 +266,41 @@ par_impar <- function(vetor){
 }
 par_impar(v)
 
+# Função do dois retornos 
 
+ agro_consultas <- function(coluna,faturado){
+
+        if (coluna %in% 301:304){
+
+                if (coluna %in% c(301,303)){
+                    
+                    y <- 310
+                    z <- 2.50
+                    return(list(y,z))
+
+                }
+
+                if(coluna %in% c(302,304)){
+
+                    y <- 621
+                    z <- 2.80
+                    
+                    return(list(y,z))
+
+
+                }
+
+        }
+
+        else {
+            y <-coluna
+            z <- faturado
+            return(list(y,z))
+        }
+
+ }
+
+teste_df = data.frame(consult = c(301,300,304,290) , preco = c(1,2,3,4))
+# retorna em matriz 
+teste_df$consult <- mapply(agro_consultas,teste_df$consult,teste_df$preco,SIMPLIFY = TRUE)[1,]
+teste_df$preco <- mapply(agro_consultas,teste_df$consult, teste_df$preco , SIMPLIFY = TRUE)[2,]
